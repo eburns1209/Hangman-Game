@@ -1,11 +1,36 @@
-* {
+#container{
+    width: 50%;
+    border-radius: 5px;
+    padding: 10px;
+    background-color: #dddddd;
+    margin: 10% auto;
+    text-align: center;
+}
+
+#letters a{
+    color: green;
+    background-color: #A9A9A9;
+    border-radius: 5px;
+    padding: 5px;
+    
+}
+
+#letters a:hover{
+    color:red;
+}
+
+/*#letters a:disabled{
+    color:yellow;
+    text-decoration: underline;
+}*/
+/** {
     box-sizing: border-box;
 }
 body {
     font-family: sans-serif;
 }
 /* Keep it simple - improvement would be to not display characters */
- .letter {
+ /*.letter {
     display: inline-block;
     list-style: none;
     width: 20px;
@@ -13,27 +38,5 @@ body {
     border-bottom: 1px solid black;
     text-align: center;
     color: white;
-}
-.current-word {
-    list-style: none;
-}
-.output {
-    opacity: 0;
-    transition: opacity 1s ease;
-}
-.correct {
-    background-color: green;
-    transition: all 1s ease;
-}
-.error {
-    color: red;
-    opacity: 1;
-}
-.warning {
-    color: orange;
-    opacity: 1;
-}
-.win {
-    color: green;
-    opacity: 1;
-}
+}*/
+/*/

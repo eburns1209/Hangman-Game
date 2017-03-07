@@ -1,203 +1,122 @@
-<script type="text/JavaScript">
-    //this array holds the words we are going to choose from
-    var words = ["bike","run", "swim", "shoes", "beer"];
-    // var randomWord = 
-    // var = [];
-    var chosenWord = "";
-    // var lettersinChosenWord = [];
-    // var numBlanks = 0;
-    // var blanksAndSucesses = [];
-    // var wrongGuess = [];
+Main = {};
+Main.WordArray = [];
+Main.WordUArray = [];
 
-    var winCounter = 0;
-    var lossCounter = 0;
-    var numGuesses = 9;
+Main.Lives = 4;
 
-    // var s;
-    // var count = 0;
-    // var answerArray = [];
+Main.numInWordBank = Words.Length;
+Main.Word = "test";
+Main.WordU ="";
 
-    function chooseWord (){
-        //write code here
-    }
-
-    function startGame ()
-    {
-        randomWord = [randomWordArr[Math.floor(Math.random() * randomWordArr)]];
-
-        {
-        for (var i = 0; i < randomWordArr.length; i++)
-        }
-
-        { randomWordArr[i] = "_ _ _ _ _";}
-                s = answerArray.join(" ");
-            document.getElementById("answer").innerHTML = s;
-        }
-    }
-
-    // function startUp()
-    
-
-    
-
-    //  }
-
-    function Letter()
-        {
-        var letter = document.getElementById("letter").value;
-
-        if (letter.length > 0)
-        { for (var i = 0; i < randomWordArr.length; i++)
-            if (randomWordArr[i]=== letter)
-                // {answerArray[i] = letter;
-                // }
-        }
-    }
-
-    count++{
-    document.getElementById("counter").innerHTML = "No of clicks: " + count;
-
-    document.getElementById("answer").innerHTML = randomWordArr.join(" ");
+Main.PullWord = function(){
+    Main.Word = Words.List[(Math.floor(Math.random() * Main.numInWordBank))];
 }
 
-    
-    
-        if (count > 5)
-    {
-        document.getElementById("stat").innerHTML = "Come on - you should have guessed it by now";
+Main.SetUnderline = function (){
+    Main.PullWord();
+    for(i=0; i < Main.Word.Length; i ++){
+        Main.WordArray[i] = Main.Word.charAt(i);
+        Main.WordUArray[i] = "_";
+    }
+    Main.WordU = Main.WordUArray.join("");
+    document.getElementById("WORD").innerHTML = Main.WordU;
+
+    document.getElementById("numLetters").innerHTML = Main.Word.Length;
+}
+
+Main.UpdateLetter = function(letter){
+    Main.Changes = 0;
+    for(i=0; i < Main.Word.Length; i ++){
+        Main.WordArray[i] = Main.Word.charAt(i);
+        if(Main.Word.charAt(i) == letter ){
+            Main.WordUArray[i] = letter;
+            Main.Changes + = 1;
+        }
+    }
+    if(Main.Changes < 1){
+        Main.Lives - = 1;
+        document.getElementById("Lives").innerHTML = Main.Lives;
+    }
+    Main.WordU = Main.WordUArray.join("");
+    document.getElementById("WORD").innerHTML = Main.WordU;
+
+    Main.Word1 = Main.WordArray.join("");
+    Main.Word2 = Main.WordUArray.join("");
+
+    if(Mian.Word1 == Main.Word2){
+        alert ("You Won! Loading New Word");
+        window.location.reload();
+    }
+    if (Main.Lives < 1){
+        document.getElementById("WORD").innerHTML = Main.Word1;
+        alert ("You have run out of lives, please try again!");
+        window.location.reload();
     }
 }
-    </script>
+    
+    Main.PullWord();
+    Main.SetUnderline();
+//     var randomWordArr = ["bike","run", "swim", "shoes", "beer"];
+//     var randomWord = 
+//     // var = [];
+//     var chosenWord = "";
+//     var lettersinChosenWord = [];
+//     var numBlanks = 0;
+//     var blanksAndSucesses = [];
+//     var wrongGuess = [];
 
-(function () {
-    "use strict";
-    var availableLetters, words, guessInput, guess, guessButton, lettersGuessed, lettersMatched, output, man, letters, lives, currentWord, numLettersMatched, messages;
+//     var winCounter = 0;
+//     var lossCounter = 0;
+//     var numGuesses = 9;
 
-    function setup() {
-        /* start config options */
-        availableLetters = "abcdefghijklmnopqrstuvwxyz";
-        lives = 5;
-        words = ["cat", "dog", "cow", "reindeer"];
-        messages = {
-            win: 'You win!',
-            lose: 'Game over!',
-            guessed: ' already guessed, please try again...',
-            validLetter: 'Please enter a letter from A-Z'
-        };
-        /* end config options */
+//     var s;
+//     var count = 0;
+//     var answerArray = [];
 
-        lettersGuessed = lettersMatched = '';
-        numLettersMatched = 0;
+//     function startGame ()
+//     {
+//         randomWord = [randomWordArr[Math.floor(Math.random() * randomWordArr)]];
 
-        /* choose a word */
-        currentWord = words[Math.floor(Math.random() * words.length)];
+//         {
+//         for (var i = 0; i < randomWordArr.length; i++)
+//         }
 
-        /* make #man and #output blank, create vars for later access */
-        output = document.getElementById("output");
-        man = document.getElementById("man");
-        guessInput = document.getElementById("letter");
+//         { randomWordArr[i] = "_ _ _ _ _";}
+//                 s = answerArray.join(" ");
+//             document.getElementById("answer").innerHTML = s;
+//         }
+//     }
 
-        man.innerHTML = 'You have ' + lives + ' lives remaining';
-        output.innerHTML = '';
+//     // function startUp()
+    
 
-        document.getElementById("letter").value = '';
+    
 
-        /* make sure guess button is enabled */
-        guessButton = document.getElementById("guess");
-        guessInput.style.display = 'inline';
-        guessButton.style.display = 'inline';
+//     //  }
 
-        /* set up display of letters in current word */
-        letters = document.getElementById("letters");
-        letters.innerHTML = '<li class="current-word">Current word:</li>';
+//     function Letter()
+//         {
+//         var letter = document.getElementById("letter").value;
 
-        var letter, i;
-        for (i = 0; i < currentWord.length; i++) {
-            letter = '<li class="letter letter' + currentWord.charAt(i).toUpperCase() + '">' + currentWord.charAt(i).toUpperCase() + '</li>';
-            letters.insertAdjacentHTML('beforeend', letter);
-        }
-    }
+//         if (letter.length > 0)
+//         { for (var i = 0; i < randomWordArr.length; i++)
+//             if (randomWordArr[i]=== letter)
+//                 // {answerArray[i] = letter;
+//                 // }
+//         }
+//     }
 
-    function gameOver(win) {
-        if (win) {
-            output.innerHTML = messages.win;
-            output.classList.add('win');
-        } else {
-            output.innerHTML = messages.lose;
-            output.classList.add('error');
-        }
+//     count++{
+//     document.getElementById("counter").innerHTML = "No of clicks: " + count;
 
-        guessInput.style.display = guessButton.style.display = 'none';
-        guessInput.value = '';
-    }
+//     document.getElementById("answer").innerHTML = randomWordArr.join(" ");
+// }
 
-    /* Start game - should ideally check for existing functions attached to window.onload */
-    window.onload = setup();
-
-    /* buttons */
-    document.getElementById("restart").onclick = setup;
-
-    /* reset letter to guess on click */
-    guessInput.onclick = function () {
-        this.value = '';
-    };
-
-    /* main guess function when user clicks #guess */
-    document.getElementById('hangman').onsubmit = function (e) {
-        if (e.preventDefault) e.preventDefault();
-        output.innerHTML = '';
-        output.classList.remove('error', 'warning');
-        guess = guessInput.value;
-
-        /* does guess have a value? if yes continue, if no, error */
-        if (guess) {
-            /* is guess a valid letter? if so carry on, else error */
-            if (availableLetters.indexOf(guess) > -1) {
-                /* has it been guessed (missed or matched) already? if so, abandon & add notice */
-                if ((lettersMatched && lettersMatched.indexOf(guess) > -1) || (lettersGuessed && lettersGuessed.indexOf(guess) > -1)) {
-                    output.innerHTML = '"' + guess.toUpperCase() + '"' + messages.guessed;
-                    output.classList.add("warning");
-                }
-                /* does guess exist in current word? if so, add to letters already matched, if final letter added, game over with win message */
-                else if (currentWord.indexOf(guess) > -1) {
-                    var lettersToShow;
-                    lettersToShow = document.querySelectorAll(".letter" + guess.toUpperCase());
-
-                    for (var i = 0; i < lettersToShow.length; i++) {
-                        lettersToShow[i].classList.add("correct");
-                    }
-
-                    /* check to see if letter appears multiple times */
-                    for (var j = 0; j < currentWord.length; j++) {
-                        if (currentWord.charAt(j) === guess) {
-                            numLettersMatched += 1;
-                        }
-                    }
-
-                    lettersMatched += guess;
-                    if (numLettersMatched === currentWord.length) {
-                        gameOver(true);
-                    }
-                }
-                /* guess doesn't exist in current word and hasn't been guessed before, add to lettersGuessed, reduce lives & update user */
-                else {
-                    lettersGuessed += guess;
-                    lives--;
-                    man.innerHTML = 'You have ' + lives + ' lives remaining';
-                    if (lives === 0) gameOver();
-                }
-            }
-            /* not a valid letter, error */
-            else {
-                output.classList.add('error');
-                output.innerHTML = messages.validLetter;
-            }
-        }
-        /* no letter entered, error */
-        else {
-            output.classList.add('error');
-            output.innerHTML = messages.validLetter;
-        }
-        return false;
-    };
-}());
+    
+    
+//         if (count > 5)
+//     {
+//         document.getElementById("stat").innerHTML = "Come on - you should have guessed it by now";
+//     }
+// }
+//     

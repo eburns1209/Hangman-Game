@@ -3,93 +3,80 @@
 <head>
 	<title>Hangman Game</title>
 
-<!-- Latest compiled and minified CSS -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+	<script type="text/javascript" src="jQuery.min.us" ></script>
 
-<!-- Optional theme -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 
-<!-- Latest compiled and minified JavaScript -->
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 
-<!-- <script src="index.js"></script>
- -->
-<link rel="stylesheet" type="text/css" href="hangman.css">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 
-<script type="text/JavaScript">
-	
-	var randomWordArr = ["bike","run", "swim", "shoes", "beer"];
-	var randomWord = 
-	// var = [];
-	var chosenWord = "";
-	var lettersinChosenWord = [];
-	var numBlanks = 0;
-	var blanksAndSucesses = [];
-	var wrongGuess = [];
+	<!-- Optional theme -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
 
-	var winCounter = 0;
-	var lossCounter = 0;
-	var numGuesses = 9;
-
-	var s;
-	var count = 0;
-	var answerArray = [];
-
-	function startGame ()
-	{
-		randomWord = [randomWordArr[Math.floor(Math.random() * randomWordArr)]];
-
-		{
-		for (var i = 0; i < randomWordArr.length; i++)
-		}
-
-		{ randomWordArr[i] = "_ _ _ _ _";}
-				s = answerArray.join(" ");
-			document.getElementById("answer").innerHTML = s;
-		}
-	}
-
-	// function startUp()
-	
+	<!-- Latest compiled and minified JavaScript -->
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 
 	
 
-	// 	}
-
-	function Letter()
-		{
-		var letter = document.getElementById("letter").value;
-
-		if (letter.length > 0)
-		{ for (var i = 0; i < randomWordArr.length; i++)
-			if (randomWordArr[i]=== letter)
-				// {answerArray[i] = letter;
-				// }
-		}
-	}
-
-	count++{
-	document.getElementById("counter").innerHTML = "No of clicks: " + count;
-
-	document.getElementById("answer").innerHTML = randomWordArr.join(" ");
-}
-
 	
 	
-		if (count > 5)
-	{
-		document.getElementById("stat").innerHTML = "Come on - you should have guessed it by now";
-	}
-}
-	</script>
 
+	<link rel="stylesheet" type="text/css" href="styles.css">
+	
 </head>
 
 	
 <body>
-<div class="jumbotron">
-  <h1>Hangman-Game</h1>
-	<form id="hangman">
+<div id="container">
+	<div id="header">
+		<p>You have <span id="Lives">4</span> Lives Left
+		<br>
+		There are <span id="numLetters">8</span> Letters in This Word.
+		</p>
+		<h1 id="WORD">_ _ _ _ _</h1>
+	</div>
+
+	<div id="letters">
+		<a id="a">A</a>
+		<a id="b">B</a>
+		<a id="c">C</a>
+		<a id="d">D</a>
+		<a id="e">E</a>
+		<a id="f">F</a>
+		<a id="g">G</a>
+		<a id="h">H</a>
+		<a id="i">I</a>
+		<a id="j">J</a>
+		<a id="k">K</a>
+		<a id="l">L</a>
+		<a id="m">M</a>
+		<a id="n">N</a>
+		<a id="o">O</a>
+		<a id="p">P</a>
+		<a id="q">Q</a>
+		<a id="r">R</a>
+		<a id="s">S</a>
+		<a id="t">T</a>
+		<a id="u">U</a>
+		<a id="v">V</a>
+		<a id="w">W</a>
+		<a id="x">X</a>
+		<a id="y">Y</a>
+		<a id="z">Z</a>
+	</div>
+</div>
+
+	<script type="text/javascript" scr="script.js"></script>
+	<script type="text/javascript" src="words.js"></script>
+	<script type="text/javascript" src="checkLetter.js"></script>
+
+
+
+
+
+  
+	
+	<!-- <form id="hangman">
 		<input type="text" maxlength="1" minlength="1" name="letter" id="letter" placeholder="Guess a letter" />
 		
 		
@@ -97,33 +84,33 @@
 
 		<button id="restart" name="restart" type="button">Restart
 		</button>
-	</form>
+	</form> -->
 
-		<ul id="letters"></ul>
+		<!-- <ul id="letters"></ul>
 
 		<p id="man"></p>
 		<p id="output" class="output"></p>
+ -->
 
-</div>
 	
 
-<div class="panel panel-default">
+<!-- <div class="panel panel-default">
   <div class="panel-heading">Lives</div>
   <div class="panel-body">
     ....
   </div>
-</div>
+</div> -->
 
-<div class="panel panel-default">
+<!-- <div class="panel panel-default">
   <div class="panel-heading">
     <h3 class="panel-title">Wrong Guesses</h3>
   </div>
   <div class="panel-body">
     ...
   </div>
-</div>
+</div> -->
 	
-		<input id="letter" type="text">
+		<!-- <input id="letter" type="text">
 
 		<input type="button" value="letter" onclick="Letter()"/>
 
@@ -135,6 +122,6 @@
 		<p id="stat"></p>
 
 
-
+ -->
 </body>
 </html>
